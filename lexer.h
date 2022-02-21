@@ -56,6 +56,3 @@ void check_tokenkindname_array(void);
 char const *get_token_kind_name(enum TokenKind kind);
 struct TokenList lex_with_str(char *buff);
 void print_tokens(struct TokenList tkl);
-
-struct Token tokens[MAX_TOKENS];
-int num_tokens;

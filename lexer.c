@@ -1,9 +1,9 @@
-#include "lex.h"
+#include "lexer.h"
 
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "../util/utilf.h"
+#include "util/utilf.h"
 
 #define DEBUG
 #ifdef DEBUG

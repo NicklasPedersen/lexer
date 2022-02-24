@@ -122,7 +122,7 @@ void print_info(char *fmt, ...) {
     printf("\033[0;0m");
 }
 
-void checkifeverythingsalrightbro(void) {
+void check_tokenkindname_array(void) {
     for (int i = 0; i < sizeof(TokenKindName)/sizeof(*TokenKindName); i++) {
         if (!TokenKindName[i]) {
             print_err("%d missing in TokenKindName\n", i);
@@ -130,7 +130,7 @@ void checkifeverythingsalrightbro(void) {
     }
 }
 
-char const *gettokenkindname(enum TokenKind kind) {
+char const *get_token_kind_name(enum TokenKind kind) {
     if (kind < 0 || kind > sizeof(TokenKindName)/sizeof(*TokenKindName)) {
         print_err("unknown TokenKind: %d\n", kind);
     }
@@ -283,7 +283,7 @@ char *get_multi_char_str(enum TokenKind kind) {
 void print_tokens(struct TokenList tkl) {
     for (int i = 0; i < tkl.num; i++) {
         struct Token t = tkl.tokens[i];
-        printf("\"%s\": ", gettokenkindname(t.kind));
+        printf("\"%s\": ", get_token_kind_name(t.kind));
         switch (t.kind)
         {
         case TOKEN_NUM:

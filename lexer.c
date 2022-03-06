@@ -207,9 +207,17 @@ struct Token get_next_token(struct Lexer *l) {
         }
         if (is_num_u(l->buf[l->curr])) {
             int val = 0;
-            while (is_num_u(l->buf[l->curr])) {
-                val = val * 10 + l->buf[l->curr] - '0';
-                l->curr++;
+            if (l->buf[l->curr] == '0' && l->buf[l->curr + 1] == 'x') {
+                l->curr += 2;
+                while (is_hexnum_u(l->buf[l->curr])) {
+                    val = val * 16 + get_hexnum_u(l->buf[l->curr]);
+                    l->curr++;
+                }
+            } else {
+                while (is_num_u(l->buf[l->curr])) {
+                    val = val * 10 + l->buf[l->curr] - '0';
+                    l->curr++;
+                }
             }
 
             struct Token t = (struct Token){TOKEN_NUM, .int_val = val};
@@ -283,7 +291,7 @@ char *get_multi_char_str(enum TokenKind kind) {
 void print_tokens(struct TokenList tkl) {
     for (int i = 0; i < tkl.num; i++) {
         struct Token t = tkl.tokens[i];
-        printf("\"%s\": ", get_token_kind_name(t.kind));
+        printf("[%d]\"%s\": ", i, get_token_kind_name(t.kind));
         switch (t.kind)
         {
         case TOKEN_NUM:

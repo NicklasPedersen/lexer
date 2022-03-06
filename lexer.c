@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include "util/utilf.h"
+#include "util/utilu.h"
 
 #define DEBUG
 #ifdef DEBUG
@@ -205,18 +205,18 @@ struct Token get_next_token(struct Lexer *l) {
                 return (struct Token){multi_char_tokens[i].kind};
             }
         }
-        if (is_num_f(l->buf[l->curr])) {
+        if (is_num_u(l->buf[l->curr])) {
             int val = 0;
-            while (is_num_f(l->buf[l->curr])) {
+            while (is_num_u(l->buf[l->curr])) {
                 val = val * 10 + l->buf[l->curr] - '0';
                 l->curr++;
             }
 
             struct Token t = (struct Token){TOKEN_NUM, .int_val = val};
             return t;
-        } else if (is_id_start_f(l->buf[l->curr])) {
+        } else if (is_id_start_u(l->buf[l->curr])) {
             int start = l->curr;
-            while (is_valid_id_f(l->buf[l->curr])) {
+            while (is_valid_id_u(l->buf[l->curr])) {
                 l->curr++;
             }
             int namelen = l->curr - start;

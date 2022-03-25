@@ -27,8 +27,10 @@ while (current < tkl.num) { ... }
 - [ ] Dynamically allocate and resize tokenlist buffer as necessary
 - [ ] Handling of escape characters
 - [ ] Proper handling of other bases than base 10
-- [ ] Look into "immutable lexer"
+- [ ] Look into "immutable lexer" [0]
 - [ ] Decice if we should allow other tokens into names (for name mangling)
+
+[0] stackoverflow answer talking about an immutable lexer: https://stackoverflow.com/a/44336960
 
 # Interface explanation
 

@@ -2,12 +2,35 @@
 
 This is a more generalized lexer for use in assemblers/compilers
 
-There are some TODOs:
+# How to get started
+
+```shell
+git clone https://github.com/nicklaspedersen/lexer
+git submodule update --init --recursive
+```
+
+Then use the lexer like so:
+
+```C
+/* lex_with_str expects a null-terminated string */
+struct TokenList tkl = lex_with_str(string_that_has_code);
+/* you can print all tokens to debug */
+print_tokens(tkl);
+/* you can loop over the token list */
+int current = 0;
+while (current < tkl.num) { ... }
+```
+
+# TODOs
 - [ ] Handle comments properly
-- [ ] Decide if we should allow newline as a token since assemblers use it for instruction sepperation
+- [ ] Decide if we should allow newline as a token since assemblers use it for instruction seperation
 - [ ] Dynamically allocate and resize tokenlist buffer as necessary
 - [ ] Handling of escape characters
 - [ ] Proper handling of other bases than base 10
+- [ ] Look into "immutable lexer"
+- [ ] Decice if we should allow other tokens into names (for name mangling)
+
+# Interface explanation
 
 ```C
 // enum that contains all the possible token kinds

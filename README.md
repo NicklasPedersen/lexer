@@ -5,8 +5,7 @@ This is a more generalized lexer for use in assemblers/compilers
 # How to get started
 
 ```shell
-git clone https://github.com/nicklaspedersen/lexer
-git submodule update --init --recursive
+git clone --recurse-submodules https://github.com/nicklaspedersen/lexer
 ```
 
 Then use the lexer like so:
